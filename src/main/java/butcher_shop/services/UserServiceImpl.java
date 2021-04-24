@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setLogin(registration.getLogin());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setRoles(Collections.singletonList(new Role(1L,"ROLE_USER")));
+        user.setRoles(Collections.singletonList(new Role(1L,"USER")));
         user.setSessionID(cookie);
         return userRepository.save(user);
     }

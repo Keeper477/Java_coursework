@@ -34,7 +34,7 @@ public class RegistrationController {
         User existing = userService.findByLogin(userDto.getLogin());
         if (existing != null){
             result.rejectValue("login", null,
-                    "There is already an account registered with that login");
+                    "Этот логин занят");
         }
 
         if (result.hasErrors()){
