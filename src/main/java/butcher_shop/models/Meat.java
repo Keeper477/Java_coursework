@@ -6,13 +6,15 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "beef")
+@Table(name = "meat")
 @Getter
 @Setter
-public class Beef {
+public class Meat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "sort")
+    String sort;
     @Column(name = "name")
     String name;
     @Column(name = "weight")
@@ -21,4 +23,8 @@ public class Beef {
     int price;
     @Column(name = "description")
     String description;
+    @Column(name = "quantity")
+    int quantity;
+    @ManyToOne (fetch = FetchType.LAZY)
+    private Basket basket;
 }

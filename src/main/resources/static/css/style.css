@@ -1,0 +1,58 @@
+body, html{
+    background-color: #e2e2e2;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+
+}
+
+.register-form{
+    font-size: 16px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.logbutton{
+    height: 50px;
+    width: 200px;
+    background-color:yellowgreen;
+    border-radius: 0;
+    font-size: 18px;
+    color: #000000;
+    border: none !important;
+    margin-bottom: 5px;
+}
+.logbutton:hover{
+    color: #ffffff;
+    background-color:darkolivegreen;
+}
+.logbutton:active{
+    color: white;
+    background-color:darkolivegreen;
+}
+
+.register-form label{
+    color: #000000;
+
+}
+.register-form input{
+    margin-bottom: 5px;
+    width: 430px;
+    height: 40px;
+    border-radius: 0;
+}
+
+
+.header-img{
+    height: 40px;
+}
+.flex-container {
+    flex-wrap: wrap;
+}
+.home_table{
+    margin-top:60px;
+    text-align: center
+}
