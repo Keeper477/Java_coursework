@@ -49,6 +49,9 @@ body, html{
 .header-img{
     height: 40px;
 }
+.home-img{
+    margin: 20px;
+}
 .flex-container {
     flex-wrap: wrap;
 }

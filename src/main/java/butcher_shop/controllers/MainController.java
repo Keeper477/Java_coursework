@@ -22,4 +22,8 @@ public class MainController {
     public String getBasket() {
         return "basket";
     }
+    @GetMapping("/stocks")
+    public String getInfo() {
+        return "info";
+    }
 }
