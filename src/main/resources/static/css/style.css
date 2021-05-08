@@ -36,8 +36,8 @@ body, html{
 
 .register-form label{
     color: #000000;
-
 }
+
 .register-form input{
     margin-bottom: 5px;
     width: 430px;
@@ -45,17 +45,32 @@ body, html{
     border-radius: 0;
 }
 
-
 .header-img{
     height: 40px;
 }
 .home-img{
     margin: 20px;
 }
-.flex-container {
+.flex-container1 {
     flex-wrap: wrap;
+}
+.flex-container2 {
+    margin-top:60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+}
+.flex-container3 {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
 }
 .home_table{
     margin-top:60px;
     text-align: center
+}
+
+.shop-img{
+    width: 400px;
+    height: 280px;
 }

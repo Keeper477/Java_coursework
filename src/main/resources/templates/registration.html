@@ -33,7 +33,7 @@
                                th:field="*{login}"/>
                         <p class="error-message"
                            th:each="error: ${#fields.errors('login')}"
-                           th:text="${error}">Ошибка</p>
+                           th:text="${error}" style="color: red">Ошибка</p>
                     </div>
                 </div>
             </div>

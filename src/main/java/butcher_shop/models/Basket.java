@@ -16,7 +16,7 @@ import java.util.List;
 public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    int id;
     @Column(name = "count")
     int count;
     @Column(name = "sum")

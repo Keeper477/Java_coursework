@@ -3,6 +3,7 @@ package butcher_shop.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class MainController {
@@ -18,12 +19,12 @@ public class MainController {
     public String login(Model model) {
         return "login";
     }
-    @GetMapping("/basket")
-    public String getBasket() {
-        return "basket";
-    }
     @GetMapping("/stocks")
     public String getInfo() {
         return "info";
+    }
+    @GetMapping("/{undefind}")
+    public String getError() {
+        return "404";
     }
 }

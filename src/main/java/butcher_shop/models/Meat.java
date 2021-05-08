@@ -17,6 +17,8 @@ public class Meat {
     String sort;
     @Column(name = "name")
     String name;
+    @Column(name = "image")
+    String image;
     @Column(name = "weight")
     int weight;
     @Column(name = "price")
