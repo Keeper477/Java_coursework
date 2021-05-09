@@ -16,104 +16,43 @@
     <div class="flex-container2" style= "height: 100%">
         <div style="min-width: 30%; height: 600px; display: flex; justify-content: center; align-items: center">
             <div style="display: flex; flex-direction: column ;">
-                <a class="nav-link" style="color: black; font-size: 25px;" href="/shop/mutton">Говядина</a>
-                <a class="nav-link" style="color: black; font-size: 25px;" href="/shop/beef">Телятина</a>
+                <a class="nav-link" style="color: black; font-size: 25px;" href="/shop/mutton">Телятина</a>
+                <a class="nav-link" style="color: black; font-size: 25px;" href="/shop/beef">Говядина</a>
                 <a class="nav-link" style="color: black; font-size: 25px;" href="/shop/pork">Свинина</a>
                 <a class="nav-link" style="color: black; font-size: 25px;" href="/shop/chicken">Курица</a>
             </div>
         </div>
         <div class="flex-container3">
-            <form action="#" th:object="${meat1}" method="post" style="text-align: center; background: cadetblue;
+            <form action="#" th:each="meat : ${meat}" method="post" style="text-align: center; background: cadetblue;
                 margin: 10px; padding: 5px; height: 440px;">
                 <table>
                     <tr>
-                        <td><img th:src="*{image}" class="shop-img"></td>
+                        <td><img th:src="*{meat.image}" class="shop-img"></td>
                     </tr>
                     <tr>
-                        <h3 th:text="*{name}"></h3>
+                        <h3 th:text="*{meat.name}"></h3>
                     </tr>
                     <tr>
-                        <td><h4><span th:text="*{price}"></span> &#8381; / <span th:text="*{weight}"></span> кг</h4></td>
+                        <td>
+                            <h4>
+                                <span th:text="*{meat.price}"></span> &#8381; / <span th:text="*{meat.weight}"></span> кг
+                            </h4>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><a><h4>Купить</h4></a></td>
+                    <tr th:switch="${meat.quantity}">
+                        <td th:case="0"><h4 style="color: #b80000">Нет товара</h4></td>
+                        <td th:case="*">
+                            <a th:href="@{'/shop/'+${meat.sort}+'/add/'+${meat.name}+'/'+${meat.quantity}}">
+                                Купить
+                            </a>
+                        </td>
                     </tr>
                 </table>
             </form>
-            <form action="#" th:object="${meat2}" method="post" style="text-align: center; background: cadetblue;
-                margin: 10px; padding: 5px; height: 440px;">
-                <table>
-                    <tr>
-                        <td><img th:src="*{image}" class="shop-img"></td>
-                    </tr>
-                    <tr>
-                        <h3 th:text="*{name}"></h3>
-                    </tr>
-                    <tr>
-                        <td><h4><span th:text="*{price}"></span> &#8381; / <span th:text="*{weight}"></span> кг</h4></td>
-                    </tr>
-                    <tr>
-                        <td><a><h4>Купить</h4></a></td>
-                    </tr>
-                </table>
-            </form>
-            <form action="#" th:object="${meat3}" method="post" style="text-align: center; background: cadetblue;
-                margin: 10px; padding: 5px; height: 440px;">
-                <table>
-                    <tr>
-                        <td><img th:src="*{image}" class="shop-img"></td>
-                    </tr>
-                    <tr>
-                        <h3 th:text="*{name}"></h3>
-                    </tr>
-                    <tr>
-                        <td><h4><span th:text="*{price}"></span> &#8381; / <span th:text="*{weight}"></span> кг</h4></td>
-                    </tr>
-                    <tr>
-                        <td><a><h4>Купить</h4></a></td>
-                    </tr>
-                </table>
-            </form>
-            <form action="#" th:object="${meat4}" method="post" style="text-align: center; background: cadetblue;
-                margin: 10px; padding: 5px; height: 440px;">
-                <table>
-                    <tr>
-                        <td><img th:src="*{image}" class="shop-img"></td>
-                    </tr>
-                    <tr>
-                        <h3 th:text="*{name}"></h3>
-                    </tr>
-                    <tr>
-                        <td><h4><span th:text="*{price}"></span> &#8381; / <span th:text="*{weight}"></span> кг</h4></td>
-                    </tr>
-                    <tr>
-                        <td><a><h4>Купить</h4></a></td>
-                    </tr>
-                </table>
-            </form>
-            <form action="#" th:object="${meat5}" method="post" style="text-align: center; background: cadetblue;
-                margin: 10px; padding: 5px; height: 440px;">
-                <table>
-                    <tr>
-                        <td><img th:src="*{image}" class="shop-img"></td>
-                    </tr>
-                    <tr>
-                        <h3 th:text="*{name}"></h3>
-                    </tr>
-                    <tr>
-                        <td><h4><span th:text="*{price}"></span> &#8381; / <span th:text="*{weight}"></span> кг</h4></td>
-                    </tr>
-                    <tr>
-                        <td><a><h4>Купить</h4></a></td>
-                    </tr>
-                </table>
-            </form>
+
 
         </div>
     </div>
-
-
-
 
     <div th:insert="blocks/footer :: footer"></div>
 

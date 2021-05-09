@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -32,7 +33,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-
     public User() {
     }
 
@@ -45,5 +45,24 @@ public class User {
         this.login = login;
         this.password = password;
         this.roles = roles;
+    }
+    @ManyToMany (cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "user_basket",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "meat_id")
+    )
+    private List<Meat> meats;
+
+    public void addMeat(Meat meat){
+        this.meats.add(meat);
+        meat.getBaskets().add(this);
+    }
+
+    public void removeMeat(Meat meat){
+        this.meats.remove(meat);
+        meat.getBaskets().remove(this);
     }
 }

@@ -16,7 +16,15 @@ public class MeatService {
     @Autowired
     private MeatRepository meatRepository;
 
-    public List<Meat> getByName(String sort) {
+    public List<Meat> getBySort(String sort) {
         return meatRepository.findAllBySort(sort);
+    }
+
+    public Meat getByName(List<Meat> meats, String name){
+        for (Meat meat : meats) {
+            if (meat.getName().equals(name))
+                return meat;
+        }
+        return null;
     }
 }

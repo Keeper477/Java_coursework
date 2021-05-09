@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface MeatRepository extends JpaRepository<Meat, Integer> {
     List<Meat> findAllBySort(String sort);
+    Meat findByName(String name);
 }

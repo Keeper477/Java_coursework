@@ -11,10 +11,6 @@ public class MainController {
     public String getHome() {
         return "home";
     }
-    @GetMapping("/shop")
-    public String getShop() {
-        return "shop";
-    }
     @GetMapping("/login")
     public String login(Model model) {
         return "login";

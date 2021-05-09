@@ -21,7 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers(
-                    "/basket").authenticated()
+                    "/basket",
+                    "/shop/**/add/**/**").authenticated()
             .and()
                 .formLogin()
                 .loginPage("/login")

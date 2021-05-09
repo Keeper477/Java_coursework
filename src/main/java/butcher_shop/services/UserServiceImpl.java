@@ -1,12 +1,14 @@
 package butcher_shop.services;
 
 import butcher_shop.controllers.UserRegistrationDto;
+import butcher_shop.models.Meat;
 import butcher_shop.models.Role;
 import butcher_shop.models.User;
 import butcher_shop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,14 +31,15 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByLogin(login);
     }
 
-    public User save(UserRegistrationDto registration, String cookie){
+    public void save(UserRegistrationDto registration, String cookie){
         User user = new User();
         user.setLogin(registration.getLogin());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         user.setRoles(Collections.singletonList(new Role(1L,"USER")));
         user.setSessionID(cookie);
-        return userRepository.save(user);
+        userRepository.save(user);
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -54,4 +57,5 @@ public class UserServiceImpl implements UserService {
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
     }
+
 }

@@ -11,13 +11,30 @@
 <body>
     <header th:insert="blocks/header :: header"></header>
 
-    <div class="register-form">
+    <div class="register-form" style="display: flex; align-items: center; flex-direction: column;">
         <h1 class="text-center">Заказ</h1>
-        <div class="flex-container">Позиции заказа</div>
-        <button>Купить</button>
+        <div class="flex-container4">
+            <div class="flex-container5">
+                <form action="#" th:each="meat : ${meat}" method="post">
+                    <h4><a th:href="@{'/basket/delete/'+${meat.name}}">&#10060;</a>
+                        <label th:text="*{meat.name}"></label></h4>
+                </form>
+            </div>
+            <div class="flex-container5">
+                <form action="#" th:each="num : ${num}" method="post">
+                    <h4 th:text="*{num}"></h4>
+                </form>
+            </div>
+        </div>
+        <form action="#" th:object="${price}" method="post">
+            <h4 class="text-center">Итого: <label th:text="${price}"></label></h4>
+        </form>
+        <h4 class="text-center">
+            <a th:href="@{'/basket/buy'}">Купить</a>
+        </h4>
     </div>
 
-    <div th:insert="blocks/footer :: footer"></div>
+    <div th:insert="blocks/footer :: footer" class="fixed-bottom"></div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

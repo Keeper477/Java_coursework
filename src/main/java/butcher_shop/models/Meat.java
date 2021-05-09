@@ -1,9 +1,13 @@
 package butcher_shop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "meat")
@@ -27,6 +31,6 @@ public class Meat {
     String description;
     @Column(name = "quantity")
     int quantity;
-    @ManyToOne (fetch = FetchType.LAZY)
-    private Basket basket;
+    @ManyToMany(mappedBy = "meats")
+    private Set<User> baskets=new HashSet<>();
 }

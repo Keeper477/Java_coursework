@@ -18,9 +18,6 @@ public class UserRegistrationDto {
     @NotNull
     private String login;
 
-    @NotNull
-    private String confirmLogin;
-
     @AssertTrue
     private Boolean terms;
 
