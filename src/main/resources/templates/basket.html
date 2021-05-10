@@ -16,7 +16,7 @@
         <div class="flex-container4">
             <div class="flex-container5">
                 <form action="#" th:each="meat : ${meat}" method="post">
-                    <h4><a th:href="@{'/basket/delete/'+${meat.name}}">&#10060;</a>
+                    <h4><a th:href="@{'/basket/delete/'+${meat.name}}" style="text-decoration: none; ">&#10060;</a>
                         <label th:text="*{meat.name}"></label></h4>
                 </form>
             </div>
@@ -26,11 +26,17 @@
                 </form>
             </div>
         </div>
+        <div th:if="${!(discount == 0)}">
+            <h4 class="text-center">Ваша скидка: <label th:text="${discount}"></label>%</h4>
+        </div>
+        <div th:if="${discount == 0}">
+            <h4 class="text-center">У вас нет скидок</h4>
+        </div>
         <form action="#" th:object="${price}" method="post">
             <h4 class="text-center">Итого: <label th:text="${price}"></label></h4>
         </form>
         <h4 class="text-center">
-            <a th:href="@{'/basket/buy'}">Купить</a>
+            <a th:href="@{'/basket/buy'}" class="button">Купить</a>
         </h4>
     </div>
 

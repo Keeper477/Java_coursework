@@ -5,6 +5,27 @@ body, html{
 
 }
 
+.button {
+    background-color: #7da726;
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button:hover{
+    color: #ffffff;
+    background-color: #617936;
+}
+.button:active{
+    color: #ffffff;
+    background-color: #617936;
+}
+
 .register-form{
     font-size: 16px;
     left: 50%;
@@ -55,7 +76,6 @@ body, html{
     flex-wrap: wrap;
 }
 .flex-container2 {
-    margin-top:60px;
     display: flex;
     justify-content: space-around;
     align-items: stretch;
@@ -76,11 +96,41 @@ body, html{
     flex-direction: column;
 }
 .home_table{
-    margin-top:60px;
     text-align: center
 }
 
 .shop-img{
     width: 400px;
     height: 280px;
+}
+
+@media (max-width: 767px) {
+    .header-img{
+        display: none;
+    }
+    .logbutton{
+        height: 50px;
+        width: 100px;
+        background-color:yellowgreen;
+        border-radius: 0;
+        font-size: 18px;
+        color: #000000;
+        border: none !important;
+        margin-bottom: 5px;
+    }
+    .register-form input{
+        margin-bottom: 5px;
+        width: 200px;
+        height: 40px;
+        border-radius: 0;
+    }
+    .register-form{
+        font-size: 16px;
+        left: 50%;
+        top: 60%;
+        position: absolute;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        -moz-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+    }
 }

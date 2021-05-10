@@ -18,10 +18,17 @@ public class BasketService {
     @Autowired
     private MeatRepository meatRepository;
 
-    public void addMeat(Meat meat) {
+    public boolean addMeat(Meat meat) {
         User user = getUser();
-        user.addMeat(meat);
-        meatRepository.save(meat);
+        List<Meat> meats = user.getMeats();
+        if(meat.getQuantity() > 0){
+            meat.setQuantity(meat.getQuantity()-1);
+            user.addMeat(meat);
+            meatRepository.save(meat);
+            return true;
+        }
+        return false;
+
     }
     public List<Meat> getMeats() {
         User user = getUser();
@@ -45,24 +52,43 @@ public class BasketService {
         }
         return str;
     }
-    public Integer getPrice(List<Meat> meats) {
-        int price = 0;
+    public Double getPrice(List<Meat> meats) {
+        double price = 0;
         for (Meat meat : meats) {
             price += meat.getPrice();
         }
+        price -= price*getStock(meats) /100;
         return price;
+    }
+
+    public Double getStock(List<Meat> meats) {
+        double discount = 0;
+        if (meats.size() >=6){
+            discount +=10;
+        }
+        List<String> sorts = new ArrayList<>();
+        for (Meat meat : meats) {
+            sorts.add(meat.getSort());
+        }
+        Set<String> stocks = new HashSet<>(sorts);
+        if (stocks.size() >=2){
+            discount +=5;
+        }
+        return discount;
     }
 
     public void deleteMeat(String name){
         User user = getUser();
-        user.removeMeat(meatRepository.findByName(name));
+        Meat meat = meatRepository.findByName(name);
+        user.removeMeat(meat);
+        meat.setQuantity(meat.getQuantity()+1);
         userRepository.save(user);
+        meatRepository.save(meat);
     }
     public void buy(){
         User user = getUser();
         List<Meat> meats = user.getMeats();
         for (Meat meat : meats) {
-            meat.setQuantity(meat.getQuantity()-1);
             Set<User> users = meat.getBaskets();
             users.remove(user);
             meat.setBaskets(users);

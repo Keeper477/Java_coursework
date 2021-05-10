@@ -1,7 +1,7 @@
-<div th:fragment = "header">
+<div th:fragment = "header" class="header">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #000000;">
         <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarCollapse" >
+            <div class=" navbar-collapse" id="navbarCollapse" >
                 <img th:src="@{/img/logo.png}" class="header-img"/>
                 <ul class="navbar-nav nav-fill col-lg-2" >
                     <li class="nav-item">
@@ -18,9 +18,11 @@
                     </li>
                 </ul>
                 <div class="ms-auto">
-                    <a class="nav-link" href="/basket" style='color: #969696'>Корзина</a>
+                    <a class="nav-link" href="/basket" style='color: #969696; text-align: center'>Корзина</a>
                 </div>
             </div>
         </div>
     </nav>
+
 </div>
+

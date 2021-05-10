@@ -3,7 +3,6 @@ package butcher_shop.controllers;
 import butcher_shop.models.Meat;
 import butcher_shop.services.BasketService;
 import butcher_shop.services.MeatService;
-import butcher_shop.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -55,14 +54,16 @@ public class MeatController {
         return mav;
     }
 
-    @GetMapping("{sort}/add/{name}/{quantity}")
-    public String addMeat(@PathVariable String sort, @PathVariable String name, @PathVariable int quantity){
+    @GetMapping("{sort}/add/{name}")
+    public ModelAndView addMeat(@PathVariable String sort, @PathVariable String name){
         List<Meat> meats = meatService.getBySort(sort);
         Meat meat = meatService.getByName(meats, name);
-        if (meat != null){
-            basketService.addMeat(meat);
-        }
-        return "redirect:/shop/"+sort;
+        ModelAndView mav = new ModelAndView("shop");
+        basketService.addMeat(meat);
+        mav.addObject("meat", meats);
+        mav.addObject("product", meat.getName());
+        mav.addObject("purchase", true);
+        return mav;
     }
 
 }

@@ -28,6 +28,7 @@ public class BasketController {
         mav.addObject("meat", meats);
         mav.addObject("num", basketService.getCounts(meats, basketService.getMeats()));
         mav.addObject("price", basketService.getPrice(basketService.getMeats()));
+        mav.addObject("discount", (int) Math.round(basketService.getStock(basketService.getMeats())));
         return mav;
     }
     @GetMapping("/basket/delete/{name}")

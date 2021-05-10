@@ -24,7 +24,7 @@
         </div>
         <div class="flex-container3">
             <form action="#" th:each="meat : ${meat}" method="post" style="text-align: center; background: cadetblue;
-                margin: 10px; padding: 5px; height: 440px;">
+                margin: 10px; padding: 5px; height: 480px;">
                 <table>
                     <tr>
                         <td><img th:src="*{meat.image}" class="shop-img"></td>
@@ -40,13 +40,18 @@
                         </td>
                     </tr>
                     <tr th:switch="${meat.quantity}">
-                        <td th:case="0"><h4 style="color: #b80000">Нет товара</h4></td>
+                        <td th:case="0"><h4 style="color: #b80000; margin-top: 20px">Нет товара</h4></td>
                         <td th:case="*">
-                            <a th:href="@{'/shop/'+${meat.sort}+'/add/'+${meat.name}+'/'+${meat.quantity}}">
+                            <a th:href="@{'/shop/'+${meat.sort}+'/add/'+${meat.name}}" class="button">
                                 Купить
                             </a>
                         </td>
                     </tr>
+                    <div th:if="${product == meat.name}">
+                        <tr th:if="${purchase}">
+                            <td><h6>ДОБАВЛЕН В КОРЗИНУ</h6></td>
+                        </tr>
+                    </div>
                 </table>
             </form>
 

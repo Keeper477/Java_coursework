@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +19,9 @@ public class MeatService {
     private MeatRepository meatRepository;
 
     public List<Meat> getBySort(String sort) {
-        return meatRepository.findAllBySort(sort);
+        List<Meat> meats = meatRepository.findAllBySort(sort);
+        meats.sort(Comparator.comparing(Meat::getId));
+        return meats;
     }
 
     public Meat getByName(List<Meat> meats, String name){
