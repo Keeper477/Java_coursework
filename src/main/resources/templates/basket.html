@@ -36,12 +36,25 @@
             <h4 class="text-center">Итого: <label th:text="${price}"></label></h4>
         </form>
         <h4 class="text-center">
-            <a th:href="@{'/basket/buy'}" class="button">Купить</a>
+            <a th:href="@{'/basket/buy'}" class="button" onclick="openMenu()">Купить</a>
         </h4>
     </div>
 
     <div th:insert="blocks/footer :: footer" class="fixed-bottom"></div>
 
+    <script th:inline="javascript">
+        function openMenu() {
+            const username = [[${price}]];
+            if (username === 0){
+                alert("Товары не добавлены");
+            }
+            else {
+                alert("Покупка успешна");
+            }
+
+        }
+    </script>
+    }
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

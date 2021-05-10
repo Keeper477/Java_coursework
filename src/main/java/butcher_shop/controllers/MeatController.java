@@ -55,6 +55,7 @@ public class MeatController {
     }
 
     @GetMapping("{sort}/add/{name}")
+    @ResponseBody
     public ModelAndView addMeat(@PathVariable String sort, @PathVariable String name){
         List<Meat> meats = meatService.getBySort(sort);
         Meat meat = meatService.getByName(meats, name);

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -25,6 +26,7 @@ public class BasketController {
     public ModelAndView getBasket(){
         ModelAndView mav = new ModelAndView("basket");
         List<Meat> meats = basketService.getSetMeat(basketService.getMeats());
+        meats.sort(Comparator.comparing(Meat::getId));
         mav.addObject("meat", meats);
         mav.addObject("num", basketService.getCounts(meats, basketService.getMeats()));
         mav.addObject("price", basketService.getPrice(basketService.getMeats()));
