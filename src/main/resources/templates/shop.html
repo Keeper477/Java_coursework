@@ -27,7 +27,11 @@
                 margin: 10px; padding: 5px; height: 480px;">
                 <table>
                     <tr>
-                        <td><img th:src="*{meat.image}" class="shop-img"></td>
+                        <td>
+                            <a th:href="@{'/shop/'+${meat.sort}+'/get/'+${meat.name}}">
+                                <img th:src="*{meat.image}" class="shop-img">
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <h3 th:text="*{meat.name}"></h3>
@@ -60,7 +64,6 @@
     </div>
 
     <div th:insert="blocks/footer :: footer"></div>
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

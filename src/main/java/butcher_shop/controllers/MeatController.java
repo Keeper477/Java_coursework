@@ -20,37 +20,22 @@ public class MeatController {
     @Autowired
     private BasketService basketService;
 
-    @GetMapping("/mutton")
+    @GetMapping("/{sort}")
     @ResponseBody
-    public ModelAndView getMutton() {
+    public ModelAndView getMeats(@PathVariable String sort){
         ModelAndView mav = new ModelAndView("shop");
-        List<Meat> meats = meatService.getBySort("mutton");
+        List<Meat> meats= meatService.getBySort(sort);
         mav.addObject("meat", meats);
         return mav;
     }
 
-    @GetMapping("/pork")
+    @GetMapping("/{sort}/get/{name}")
     @ResponseBody
-    public ModelAndView getPork(){
-        ModelAndView mav = new ModelAndView("shop");
-        List<Meat> meats= meatService.getBySort("pork");
-        mav.addObject("meat", meats);
-        return mav;
-    }
-    @GetMapping("/beef")
-    @ResponseBody
-    public ModelAndView getBeef(){
-        ModelAndView mav = new ModelAndView("shop");
-        List<Meat> meats= meatService.getBySort("beef");
-        mav.addObject("meat", meats);
-        return mav;
-    }
-    @GetMapping("/chicken")
-    @ResponseBody
-    public ModelAndView getMeat(){
-        ModelAndView mav = new ModelAndView("shop");
-        List<Meat> meats= meatService.getBySort("chicken");
-        mav.addObject("meat", meats);
+    public ModelAndView getMeat(@PathVariable String sort, @PathVariable String name){
+        List<Meat> meats = meatService.getBySort(sort);
+        Meat meat = meatService.getByName(meats, name);
+        ModelAndView mav = new ModelAndView("meat");
+        mav.addObject("meat", meat);
         return mav;
     }
 

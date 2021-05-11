@@ -18,9 +18,6 @@ public class BasketController {
     @Autowired
     private BasketService basketService;
 
-    @Autowired
-    private MeatService meatService;
-
     @GetMapping("/basket")
     @ResponseBody
     public ModelAndView getBasket(){

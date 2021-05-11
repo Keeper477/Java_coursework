@@ -103,10 +103,18 @@ body, html{
     width: 400px;
     height: 280px;
 }
+.meat{
+    height: 100%;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
 
 @media (max-width: 767px) {
     .header-img{
         display: none;
+    }
+    .meat{
+        margin-top: 150px;
     }
     .logbutton{
         height: 50px;
