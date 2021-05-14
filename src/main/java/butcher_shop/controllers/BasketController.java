@@ -2,13 +2,11 @@ package butcher_shop.controllers;
 
 import butcher_shop.models.Meat;
 import butcher_shop.services.BasketService;
-import butcher_shop.services.MeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 

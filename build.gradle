@@ -25,7 +25,6 @@ dependencies {
     implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '7.0.1.Final'
     implementation 'junit:junit:4.12'
 
-
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

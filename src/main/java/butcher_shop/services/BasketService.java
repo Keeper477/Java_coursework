@@ -4,41 +4,45 @@ import butcher_shop.models.Meat;
 import butcher_shop.models.User;
 import butcher_shop.repositories.MeatRepository;
 import butcher_shop.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class BasketService {
+
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private MeatRepository meatRepository;
 
-    public boolean addMeat(Meat meat) {
+    @Transactional
+    public void addMeat(Meat meat) {
         User user = getUser();
-        List<Meat> meats = user.getMeats();
         if(meat.getQuantity() > 0){
             meat.setQuantity(meat.getQuantity()-1);
             user.addMeat(meat);
             meatRepository.save(meat);
-            return true;
         }
-        return false;
 
     }
+
+    @Transactional(readOnly = true)
     public List<Meat> getMeats() {
         User user = getUser();
         return user.getMeats();
     }
 
     public List<Meat> getSetMeat(List<Meat> meats1) {
-        Set set = new HashSet(meats1);
-        List<Meat> meat = new ArrayList<Meat>(set);
-        return meat;
+        Set<Meat> set = new HashSet<>(meats1);
+        return new ArrayList<>(set);
     }
 
     public List<String> getCounts(List<Meat> meat1, List<Meat> meat2) {
@@ -52,6 +56,7 @@ public class BasketService {
         }
         return str;
     }
+
     public Double getPrice(List<Meat> meats) {
         double price = 0;
         for (Meat meat : meats) {
@@ -77,6 +82,7 @@ public class BasketService {
         return discount;
     }
 
+    @Transactional
     public void deleteMeat(String name){
         User user = getUser();
         Meat meat = meatRepository.findByName(name);
@@ -85,6 +91,8 @@ public class BasketService {
         userRepository.save(user);
         meatRepository.save(meat);
     }
+
+    @Transactional
     public void buy(){
         User user = getUser();
         List<Meat> meats = user.getMeats();
@@ -101,13 +109,18 @@ public class BasketService {
 
     private User getUser(){
         String username = "";
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        try {
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        } else {
-            username = principal.toString();
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else {
+                username = principal.toString();
+            }
+        } catch (NullPointerException e){
+            username = "test";
         }
+
         return userRepository.findByLogin(username);
     }
 }

@@ -1,7 +1,6 @@
 package butcher_shop.services;
 
 import butcher_shop.controllers.UserRegistrationDto;
-import butcher_shop.models.Meat;
 import butcher_shop.models.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

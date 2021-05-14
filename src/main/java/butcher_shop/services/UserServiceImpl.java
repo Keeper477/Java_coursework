@@ -1,18 +1,17 @@
 package butcher_shop.services;
 
 import butcher_shop.controllers.UserRegistrationDto;
-import butcher_shop.models.Meat;
 import butcher_shop.models.Role;
 import butcher_shop.models.User;
 import butcher_shop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -27,10 +26,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Transactional(readOnly = true)
     public User findByLogin(String login){
         return userRepository.findByLogin(login);
     }
 
+    @Transactional
     public void save(UserRegistrationDto registration, String cookie){
         User user = new User();
         user.setLogin(registration.getLogin());
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = userRepository.findByLogin(login);
         if (user == null){
