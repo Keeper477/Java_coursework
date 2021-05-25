@@ -1,7 +1,7 @@
 INSERT INTO users (login, password) VALUES ('admin', 'admin');
 
-INSERT INTO role (id, name) VALUES (1, 'ADMIN');
-INSERT INTO role (id, name) VALUES (3, 'USER');
+INSERT INTO role (id, name) VALUES (1, 'USER');
+INSERT INTO role (id, name) VALUES (2, 'ADMIN');
 
 INSERT INTO meat (id, description, name, price, sort, weight, quantity, image)
     VALUES (1, 'Говядина', 'Филе говядины', 750, 'beef', 3, 5, '/img/beef1.jpeg');
